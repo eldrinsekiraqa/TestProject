@@ -67,8 +67,11 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        
+        $article = Articles::where('id', $id)->delete();
+        return redirect()->route('articles.index')
+            ->with('message', 'Product deleted successfully');
     }
 
     public function create(){
