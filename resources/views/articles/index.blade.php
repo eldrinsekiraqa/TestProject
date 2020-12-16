@@ -21,10 +21,11 @@
                                 <h5 class="card-title">{{$myarticle->title}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->excerpt}}</h6>
                                 <p class="card-text">{{$myarticle->content}}</p>
+                                <a href="{{ route('articles.edit', $myarticle -> id)}}">Edit Article </a>
                             </div>
                         </div>
                         @endforeach
-                    </div>
+                    </div>                  
                 </div>
             </div>
         </div>

@@ -29,7 +29,10 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Articles::findOrFail($id);
+
+        return view('articles.edit', compact('article'))->with(['message'=>'Article has been successfully edited!']);
+
     }
 
     /**
@@ -41,7 +44,20 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'title'=>'required|max:30',
+            'excerpt'=>'required|max:100',
+            'content'=>'required'
+        ]);
+        $article = Articles::where('id', $id)
+        ->first();
+        
+        $article->title = $request->input('title');
+        $article->excerpt = $request->input('excerpt');
+        $article->content = $request->input('content');
+        $article->save();
+        
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -60,9 +76,10 @@ class ArticlesController extends Controller
     }
 
     public function store(Request $request){
+
         $validateData = $request->validate([
             'title'=>'required|max:30',
-            'excerpt'=>'required|max:50',
+            'excerpt'=>'required|max:100',
             'content'=>'required'
         ]);
 
