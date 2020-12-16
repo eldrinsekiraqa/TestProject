@@ -21,3 +21,5 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+
+Route::resource('/articles','App\Http\Controllers\ArticlesController',['except'=>'show']);
