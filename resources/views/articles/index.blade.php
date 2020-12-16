@@ -21,11 +21,18 @@
                                 <h5 class="card-title">{{$myarticle->title}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->excerpt}}</h6>
                                 <p class="card-text">{{$myarticle->content}}</p>
-                                <a href="{{ route('articles.edit', $myarticle -> id)}}">Edit Article </a>
-                            </div>
+                                <div class="container d-flex justify-content-around">
+                                     <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
+                                    <form action="{{ route('articles.destroy',  $myarticle->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>                        
                         </div>
                         @endforeach
-                    </div>                  
+                    </div>                 
                 </div>
             </div>
         </div>
