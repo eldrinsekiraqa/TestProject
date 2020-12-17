@@ -18,8 +18,9 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+Route::namespace('App\Http\Controllers')->middleware(['auth','verified'])->group(function(){
+    Route::resource('/home','HomeController',['except'=>['create','store','edit','update','destroy']]);
+    Route::resource('/articles','ArticlesController');
+});
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
-
-Route::resource('/articles','App\Http\Controllers\ArticlesController');

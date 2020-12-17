@@ -24,6 +24,12 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Articles::all();
-        return view('home')->with('articles', $articles);
+        return view('home.index')->with('articles', $articles);
+    }
+
+    public function show($id){
+        $article = Articles::findOrFail($id);
+
+        return view('home.show')->with('article',$article);
     }
 }
