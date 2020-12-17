@@ -12,4 +12,9 @@ class Articles extends Model
     protected $table = 'articles';
 
     protected $fillable=['user_id','title','excerpt','content'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
