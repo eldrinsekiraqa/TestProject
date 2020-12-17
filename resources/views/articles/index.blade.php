@@ -18,9 +18,9 @@
                         @foreach($myarticles as $myarticle)
                         <div class="card ml-2 mt-1" style="width: 14rem;">
                             <div class="card-body ">
-                                <h5 class="card-title">{{$myarticle->title}}</h5>
+                                <a href="{{route('articles.show', $myarticle->id)}}"><h5 class="card-title">{{$myarticle->title}}</h5></a>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->excerpt}}</h6>
-                                <p class="card-text">{{$myarticle->content}}</p>
+
                                 <div class="container d-flex justify-content-around">
                                      <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('articles.destroy',  $myarticle->id) }}" method="POST">
@@ -29,10 +29,10 @@
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
                         @endforeach
-                    </div>                 
+                    </div>
                 </div>
             </div>
         </div>

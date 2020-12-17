@@ -14,15 +14,17 @@
                     <div class="card-body">
                         <form method="POST" action="{{route('articles.store')}}">
                             @csrf
+
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Title</label>
-                                <input type="text" class="form-control" name="title" placeholder="Title" value="{{old('title')}}">
+                                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{old('title')}}">
                                 @error('title')
                                 <div class="text-danger">
                                         <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Excerpt</label>
                                 <textarea class="form-control"  name="excerpt" rows="1" placeholder="Excerpt">{{old('excerpt')}}</textarea>
