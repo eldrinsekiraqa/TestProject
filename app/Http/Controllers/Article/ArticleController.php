@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Article;
 
 use App\Models\Articles;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ArticlesController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,10 +30,15 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $article = Articles::findOrFail($id);
-
-        return view('articles.edit', compact('article'))->with(['message'=>'Article has been successfully edited!']);
-
+        $user = Auth::user();
+        $article = Articles::where('id',$id)
+        ->where('user_id',$user->id)
+        ->first();
+        if($article==null){
+            return redirect()->back();
+        }else{
+            return view('articles.edit', compact('article'))->with(['message'=>'Article has been successfully edited!']);
+        }
     }
 
     /**
@@ -68,7 +74,6 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-
         $article = Articles::where('id', $id)->delete();
         return redirect()->route('articles.index')
             ->with('message', 'Product deleted successfully');
