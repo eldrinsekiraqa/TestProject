@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use App\Models\User;
 use Illuminate\Http\Request;
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Articles::all();
+
+
         return view('home.index')->with('articles', $articles);
     }
 

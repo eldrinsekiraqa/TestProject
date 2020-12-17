@@ -20,6 +20,7 @@
                                 <h5 class="card-title">{{$article->title}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$article->excerpt}}</h6>
                                 <p class="card-text">{{$article->content}}</p>
+                                <h6 class="card-subtitle mb-2 text-muted">Created by : {{$article->user->name}}</h6>
                             </div>
                         </div>
                     </div>

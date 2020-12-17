@@ -17,6 +17,7 @@
                             <div class="card-body ">
                                 <a href="{{route('home.show',$article->id)}}"><h5 class="card-title">{{$article->title}}</h5></a>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$article->excerpt}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Created By : {{$article->user->name}}</h6>
                             </div>
                         </div>
                         @endforeach
@@ -26,4 +27,3 @@
         </div>
     </div>
 @endsection
-
