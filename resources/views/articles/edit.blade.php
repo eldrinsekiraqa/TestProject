@@ -6,11 +6,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        
+
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('articles.update',$article->id )}}">
+                        <form method="POST" action="{{route('articles.update',$article->id)}}">
                             @csrf
                             @method('PUT')
                             <div class="form-group">

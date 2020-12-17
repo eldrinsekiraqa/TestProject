@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 Route::namespace('App\Http\Controllers')->middleware(['auth','verified'])->group(function(){
     Route::resource('/home','HomeController',['except'=>['create','store','edit','update','destroy']]);
-    Route::resource('/articles','ArticlesController');
+    Route::resource('/articles','Article\ArticleController');
 });
 
 
