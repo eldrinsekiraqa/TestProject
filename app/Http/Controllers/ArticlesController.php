@@ -51,12 +51,12 @@ class ArticlesController extends Controller
         ]);
         $article = Articles::where('id', $id)
         ->first();
-        
+
         $article->title = $request->input('title');
         $article->excerpt = $request->input('excerpt');
         $article->content = $request->input('content');
         $article->save();
-        
+
         return redirect()->route('articles.index');
     }
 
@@ -67,8 +67,8 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-        
+    {
+
         $article = Articles::where('id', $id)->delete();
         return redirect()->route('articles.index')
             ->with('message', 'Product deleted successfully');
@@ -99,5 +99,11 @@ class ArticlesController extends Controller
 
         return redirect()->route('articles.index');
 
+    }
+    public function show($id){
+
+        $article = Articles::findOrFail($id);
+
+        return view('articles.show')->with('article',$article);
     }
 }
