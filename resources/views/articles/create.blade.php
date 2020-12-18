@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('articles.store')}}">
+                        <form method="POST" action="{{route('articles.store')}}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -38,6 +38,15 @@
                                 <label for="exampleFormControlTextarea1">Content</label>
                                 <textarea class="form-control" name="content" rows="3" placeholder="Content">{{old('content')}}</textarea>
                                 @error('content')
+                                <div class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <strong>Image:</strong>
+                                <input type="file" name="image" id="image" class="form-control">
+                                @error('image')
                                 <div class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </div>
