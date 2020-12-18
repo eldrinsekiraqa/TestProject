@@ -88,16 +88,20 @@ class ArticleController extends Controller
         $validateData = $request->validate([
             'title'=>'required|max:30',
             'excerpt'=>'required|max:100',
-            'content'=>'required'
+            'content'=>'required',
+            'image' => 'required|image|max:2048',
         ]);
-
         $user = Auth::user();
+        $iconName = time().'.'.request()->image->getClientOriginalExtension();
+        $icon_path = '/image/'.$iconName;
+        $request->image->move(public_path('images'), $iconName);
 
         $articleData = [
             'title' => $request->input('title'),
             'excerpt' => $request->input('excerpt'),
             'content' => $request->input('content'),
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'image' =>  $iconName,
         ];
 
         $article = Articles::create($articleData);

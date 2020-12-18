@@ -19,18 +19,21 @@
                     <div class="card-body d-flex row">
                         @foreach($myarticles as $myarticle)
                         <div class="card ml-2 mt-1" style="width: 14rem;">
-                            <div class="card-body ">
+                            <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $myarticle->image }}" alt="Card image cap">
+                            <div class="card-body">
                                 <a href="{{route('articles.show', $myarticle->id)}}"><h5 class="card-title">{{$myarticle->title}}</h5></a>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->excerpt}}</h6>
-
                                 <div class="container d-flex justify-content-around">
-                                     <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('articles.destroy',  $myarticle->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </div>
+                            </div>
+                            <div class="card-footer">
+                                <h6 class="card-subtitle mb-2 text-muted">Created By : {{$myarticle->user->name}}</h6>
                             </div>
                         </div>
                         @endforeach

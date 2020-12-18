@@ -14,9 +14,12 @@
                     <div class="card-body d-flex row">
                         @foreach($articles as $article)
                         <div class="card ml-2 mt-1" style="width: 14rem;">
-                            <div class="card-body ">
+                            <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $article->image }}" alt="Card image cap">
+                            <div class="card-body">
                                 <a href="{{route('home.show',$article->id)}}"><h5 class="card-title">{{$article->title}}</h5></a>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$article->excerpt}}</h6>
+                            </div>
+                            <div class="card-footer">
                                 <h6 class="card-subtitle mb-2 text-muted">Created By : {{$article->user->name}}</h6>
                             </div>
                         </div>
