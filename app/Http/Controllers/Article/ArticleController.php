@@ -37,7 +37,7 @@ class ArticleController extends Controller
         if($article==null){
             return redirect()->back();
         }else{
-            return view('articles.edit', compact('article'))->with(['message'=>'Article has been successfully edited!']);
+            return view('articles.edit', compact('article'))->with(['success'=>'Article has been successfully edited!']);
         }
     }
 
@@ -63,7 +63,7 @@ class ArticleController extends Controller
         $article->content = $request->input('content');
         $article->save();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with('success','Article Updated Successfully');
     }
 
     /**
@@ -76,7 +76,7 @@ class ArticleController extends Controller
     {
         $article = Articles::where('id', $id)->delete();
         return redirect()->route('articles.index')
-            ->with('message', 'Product deleted successfully');
+            ->with('success', 'Article deleted successfully');
     }
 
     public function create(){
@@ -102,7 +102,7 @@ class ArticleController extends Controller
 
         $article = Articles::create($articleData);
 
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.index')->with('success','Article Created Successfully');
 
     }
     public function show($id){
