@@ -20,7 +20,7 @@
                                 <form action="{{ route('articles.index') }}" method="GET" role="search">
 
                                     <div class="input-group">
-                        <span class="input-group-btn mr-5 mt-1">
+                        <span class="input-group-btn mr-2 mt-1">
                             <button class="btn btn-info" type="submit" title="Search projects">
                                 <span class="fas fa-search"></span>
                             </button>
@@ -37,7 +37,7 @@
                                 </form>
                             </div>
                         </div>
-
+                    </div>
 
                     <div class="card-body d-flex row">
                         @foreach($myarticles as $myarticle)
