@@ -20,13 +20,13 @@
                                 <form action="{{ route('articles.index') }}" method="GET" role="search">
 
                                     <div class="input-group">
-                        <span class="input-group-btn mr-2 mt-1">
+                        <span class="input-group-btn mr-2">
                             <button class="btn btn-info" type="submit" title="Search projects">
                                 <span class="fas fa-search"></span>
                             </button>
                         </span>
                                         <input type="text" class="form-control mr-2" name="term" placeholder="Search articles" id="al_desc">
-                                        <a href="{{ route('articles.index') }}" class=" mt-1">
+                                        <a href="{{ route('articles.index') }}">
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="button" title="Refresh page">
                                     <span class="fas fa-sync-alt"></span>
@@ -39,29 +39,43 @@
                         </div>
                     </div>
 
-                    <div class="card-body d-flex row">
+                    <div class="card-body d-flex row justify-content-around">
                         @foreach($myarticles as $myarticle)
-                        <div class="card ml-2 mt-1" style="width: 14rem;">
+                        <div class="card mt-1" style="width: 20rem;">
                             <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $myarticle->image }}" alt="Card image cap">
                             <div class="card-body">
-                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->al_desc}}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->tr_desc}}</h6>
+                                <h5 class="card-subtitle mb-4 text-muted"><strong>Pershkrimi ALB:</strong>&nbsp;<br>{{$myarticle->al_desc}}</h5>
+                                <h5 class="card-subtitle mb-4 text-muted"><strong>Pershkrimi TR:</strong>&nbsp;<br>{{$myarticle->tr_desc}}</h5>
+                                <h5 class="card-subtitle mb-4 text-muted"><strong>Mosha:</strong>&nbsp;<br>{{$myarticle->age}}</h5>
+                                <h5 class="card-subtitle mb-4 text-muted"><strong>In Stock:</strong>&nbsp;{{$myarticle->stock}}pcs</h5>
                                 <div class="container d-flex justify-content-around">
-                                    <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
+                                    <h5 style="color:red;">P.Price: {{ $myarticle->pur_price }}€</h5>
+                                    <h5 style="color: green;">S.Price: {{ $myarticle->sale_price }}€</h5>
+                                </div>
+                                <div class="container d-flex justify-content-between mt-3">
+                                    <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary far fa-edit"></a>
                                     <form action="{{ route('articles.destroy',  $myarticle->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                        <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-danger">
+                                            <span class="fas fa-trash-alt"></span>
+                                         </button>
+                                        </span>
                                     </form>
                                     <form method="POST" action="{{route('articles.reduceStock',$myarticle->id)}}">
                                         @csrf
                                         @method('PUT')
-                                    <button class="btn btn-primary">Sold</button>
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-success">
+                                            <span class="fas fa-minus-circle"></span>
+                                         </button>
+                                        </span>
                                     </form>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <h6 class="card-subtitle mb-2 text-muted">Created By : {{$myarticle->user->name}}</h6>
+                                <h6 class="card-subtitle text-muted text-center">Article created by : <strong>{{$myarticle->user->name}}</strong></h6>
                             </div>
                         </div>
                         @endforeach
