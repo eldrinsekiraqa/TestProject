@@ -52,9 +52,12 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'title'=>'required|max:30',
-            'excerpt'=>'required|max:100',
-            'content'=>'required',
+            'al_desc'=>'required|string',
+            'tr_desc'=>'required|string',
+            'stock'=>'required',
+            'age'=>'required',
+            'pur_price'=>'required',
+            'sale_price'=>'required',
             'image' => 'required|image|max:2048',
         ]);
 
@@ -65,20 +68,18 @@ class ArticleController extends Controller
 
         if (File::exists($image_path)) {
             unlink($image_path);
-        }
-
-        if($request->has('image')) {
             $image = $request->file('image');
             $filename = $image->getClientOriginalName();
             $image->move(public_path('images'), $filename);
             $article->image = $request->file('image')->getClientOriginalName();
         }
 
-
-        $article->title = $request->input('title');
-        $article->excerpt = $request->input('excerpt');
-        $article->content = $request->input('content');
-        //$article->image = $request->input('image');
+        $article->al_desc = $request->input('al_desc');
+        $article->tr_desc = $request->input('tr_desc');
+        $article->stock = $request->input('stock');
+        $article->age=$request->input('age');
+        $article->pur_price=$request->input('pur_price');
+        $article->sale_price=$request->input('sale_price');
         $article->save();
 
         return redirect()->route('articles.index')->with('success','Article Updated Successfully');
@@ -110,9 +111,12 @@ class ArticleController extends Controller
     public function store(Request $request){
 
         $validateData = $request->validate([
-            'title'=>'required|max:30',
-            'excerpt'=>'required|max:100',
-            'content'=>'required',
+            'al_desc'=>'required|string',
+            'tr_desc'=>'required|string',
+            'stock'=>'required',
+            'age'=>'required',
+            'pur_price'=>'required',
+            'sale_price'=>'required',
             'image' => 'required|image|max:2048',
         ]);
         $user = Auth::user();
@@ -121,13 +125,15 @@ class ArticleController extends Controller
         $request->image->move(public_path('images'), $iconName);
 
         $articleData = [
-            'title' => $request->input('title'),
-            'excerpt' => $request->input('excerpt'),
-            'content' => $request->input('content'),
+            'al_desc' => $request->input('al_desc'),
+            'tr_desc' => $request->input('tr_desc'),
+            'stock' => $request->input('stock'),
+            'age'=>$request->input('age'),
+            'pur_price'=>$request->input('pur_price'),
+            'sale_price'=>$request->input('sale_price'),
             'user_id' => $user->id,
             'image' =>  $iconName,
         ];
-
         $article = Articles::create($articleData);
 
         return redirect()->route('articles.index')->with('success','Article Created Successfully');
@@ -138,5 +144,18 @@ class ArticleController extends Controller
         $article = Articles::findOrFail($id);
 
         return view('articles.show')->with('article',$article);
+    }
+
+    public function reduceStock($id){
+        $article = Articles::where('id', $id)
+            ->first();
+        if ($article->stock == 0) {
+            return redirect()->back()->with('success','Out of Stock');
+        }else{
+            $articleStock = $article->stock;
+            $article->stock = $articleStock-1;
+            $article->save();
+        }
+        return redirect()->back()->with('success','Sold Item');
     }
 }

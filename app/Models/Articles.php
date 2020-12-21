@@ -11,7 +11,7 @@ class Articles extends Model
 
     protected $table = 'articles';
 
-    protected $fillable=['user_id','title','excerpt','content','image'];
+    protected $fillable=['al_desc','tr_desc','stock','pur_price','sale_price','age','image','user_id'];
 
     public function user()
     {

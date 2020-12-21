@@ -21,6 +21,7 @@ Auth::routes(['verify' => true]);
 Route::namespace('App\Http\Controllers')->middleware(['auth','verified'])->group(function(){
     Route::resource('/home','HomeController',['except'=>['create','store','edit','update','destroy']]);
     Route::resource('/articles','Article\ArticleController');
+    Route::put('/articles/{articleId}/reduceStock','Article\ArticleController@reduceStock')->name('articles.reduceStock');
 });
 
 
