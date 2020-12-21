@@ -16,9 +16,12 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->string('title');
-            $table->string('excerpt');
-            $table->text('content');
+            $table->text('age');
+            $table->string('al_desc');
+            $table->string('tr_desc');
+            $table->integer('stock');
+            $table->double('pur_price');
+            $table->double('sale_price');
             $table->timestamps();
         });
     }

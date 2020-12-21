@@ -21,14 +21,19 @@
                         <div class="card ml-2 mt-1" style="width: 14rem;">
                             <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $myarticle->image }}" alt="Card image cap">
                             <div class="card-body">
-                                <a href="{{route('articles.show', $myarticle->id)}}"><h5 class="card-title">{{$myarticle->title}}</h5></a>
-                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->excerpt}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->tr_desc}}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->stock}}</h6>
                                 <div class="container d-flex justify-content-around">
                                     <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('articles.destroy',  $myarticle->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    <form method="POST" action="{{route('articles.reduceStock',$myarticle->id)}}">
+                                        @csrf
+                                        @method('PUT')
+                                    <button class="btn btn-primary">Sold</button>
                                     </form>
                                 </div>
                             </div>

@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-
+                        {{__('Edit')}}
                     </div>
 
                     <div class="card-body">
@@ -14,37 +14,70 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Title</label>
-                                <input type="text" class="form-control" name="title" placeholder="Title" value="{{ $article -> title }}">
-                                @error('title')
-                                <div class="text-danger">
-                                        <strong>{{ $message }}</strong>
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Excerpt</label>
-                                <textarea class="form-control"  name="excerpt" rows="1" placeholder="Excerpt">{{ $article -> excerpt}}</textarea>
-                                @error('excerpt')
-                                <div class="text-danger">
-                                    <strong>{{ $message }}</strong>
-                                </div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Content</label>
-                                <textarea class="form-control" name="content" rows="3" placeholder="Content">{{ $article -> content}}</textarea>
-                                @error('content')
+                                <label for="al_desc">Albanian Description</label>
+                                <textarea class="form-control"  name="al_desc" rows="2" placeholder="Albanian Description">{{$article->al_desc}}</textarea>
+                                @error('al_desc')
                                 <div class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label for="tr_desc">Turkish Description</label>
+                                <textarea class="form-control"  name="tr_desc" rows="2" placeholder="Turkish Description">{{$article->tr_desc}}</textarea>
+                                @error('tr_desc')
+                                <div class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Age</label>
+                                <input class="form-control" type="text" name="age" placeholder="Age" value="{{$article->age}}">
+                                @error('age')
+                                <div class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Stock</label>
+                                <input class="form-control" type="number" name="stock"  placeholder="Stock" value="{{$article->stock}}">
+                                @error('stock')
+                                <div class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="container d-flex justify-content-around">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Purchase Price</label>
+                                    <input class="form-control" type="number" step="any" name="pur_price"  placeholder="Purchase Price" value="{{$article->pur_price}}">
+                                    @error('pur_price')
+                                    <div class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Sale Price</label>
+                                    <input class="form-control" type="number" step="any" name="sale_price"  placeholder="Sale Price" value="{{$article->sale_price}}">
+                                    @error('sale_price')
+                                    <div class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <strong>Image:</strong>
-                                <input type="file" name="image" id="image" class="form-control" value="{{ $article->image }}">
+                                <input type="file" name="image" id="image" class="form-control">
                                 @error('image')
                                 <div class="text-danger">
                                     <strong>{{ $message }}</strong>

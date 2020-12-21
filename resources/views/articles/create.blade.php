@@ -16,9 +16,9 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{old('title')}}">
-                                @error('title')
+                                <label for="al_desc">Albanian Description</label>
+                                <textarea class="form-control"  name="al_desc" rows="2" placeholder="Albanian Description">{{old('al_desc')}}</textarea>
+                                @error('al_desc')
                                 <div class="text-danger">
                                         <strong>{{ $message }}</strong>
                                 </div>
@@ -26,23 +26,57 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Excerpt</label>
-                                <textarea class="form-control"  name="excerpt" rows="1" placeholder="Excerpt">{{old('excerpt')}}</textarea>
-                                @error('excerpt')
+                                <label for="tr_desc">Turkish Description</label>
+                                <textarea class="form-control"  name="tr_desc" rows="2" placeholder="Turkish Description">{{old('tr_desc')}}</textarea>
+                                @error('tr_desc')
                                 <div class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Content</label>
-                                <textarea class="form-control" name="content" rows="3" placeholder="Content">{{old('content')}}</textarea>
-                                @error('content')
+                                <label for="exampleFormControlTextarea1">Age</label>
+                                <input class="form-control" type="text" name="age" placeholder="Age" value="{{old('age')}}">
+                                @error('age')
                                 <div class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Stock</label>
+                                <input class="form-control" type="number" name="stock"  placeholder="Stock" value="{{old('stock')}}">
+                                @error('stock')
+                                <div class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="container d-flex justify-content-around">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Purchase Price</label>
+                                    <input class="form-control" type="number" step="any" name="pur_price"  placeholder="Purchase Price" value="{{old('pur_price')}}">
+                                    @error('pur_price')
+                                    <div class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Sale Price</label>
+                                    <input class="form-control" type="number" step="any" name="sale_price"  placeholder="Sale Price" value="{{old('sale_price')}}">
+                                    @error('sale_price')
+                                    <div class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <strong>Image:</strong>
                                 <input type="file" name="image" id="image" class="form-control" value="{{ old('image') }}">
@@ -52,9 +86,11 @@
                                 </div>
                                 @enderror
                             </div>
+
                             <div>
                                 <button class="btn-lg btn-primary" type="submit">Submit</button>
                             </div>
+
                             </div>
                         </form>
                     </div>
