@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <strong>Image:</strong>
-                                <input type="file" name="image" id="image" class="form-control">
+                                <input type="file" name="image" id="image" class="form-control" value="{{ old('image') }}">
                                 @error('image')
                                 <div class="text-danger">
                                     <strong>{{ $message }}</strong>

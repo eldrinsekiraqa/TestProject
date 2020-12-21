@@ -6,6 +6,7 @@ use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ArticleController extends Controller
 {
@@ -53,14 +54,31 @@ class ArticleController extends Controller
         $validateData = $request->validate([
             'title'=>'required|max:30',
             'excerpt'=>'required|max:100',
-            'content'=>'required'
+            'content'=>'required',
+            'image' => 'required|image|max:2048',
         ]);
+
         $article = Articles::where('id', $id)
-        ->first();
+            ->first();
+
+        $image_path = public_path("images/{$article->image}");
+
+        if (File::exists($image_path)) {
+            unlink($image_path);
+        }
+
+        if($request->has('image')) {
+            $image = $request->file('image');
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('images'), $filename);
+            $article->image = $request->file('image')->getClientOriginalName();
+        }
+
 
         $article->title = $request->input('title');
         $article->excerpt = $request->input('excerpt');
         $article->content = $request->input('content');
+        //$article->image = $request->input('image');
         $article->save();
 
         return redirect()->route('articles.index')->with('success','Article Updated Successfully');
@@ -74,7 +92,13 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $article = Articles::where('id', $id)->delete();
+        $article = Articles::findOrFail($id);
+        $image_path = public_path("images/{$article->image}");
+
+        if (File::exists($image_path)) {
+            unlink($image_path);
+        }
+        $article->delete();
         return redirect()->route('articles.index')
             ->with('success', 'Article deleted successfully');
     }

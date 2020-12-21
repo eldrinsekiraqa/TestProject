@@ -16,6 +16,7 @@
 
                     <div class="card-body d-flex row">
                             <div class="card ml-2 mt-1" style="width: 14rem;">
+                                <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $myarticle->image }}" alt="Card image cap">
                                 <div class="card-body ">
                                     <h5 class="card-title">{{$article->title}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{$article->excerpt}}</h6>
