@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{route('articles.update',$article->id)}}">
+                        <form method="POST" action="{{route('articles.update',$article->id)}}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -40,6 +40,18 @@
                                 </div>
                                 @enderror
                             </div>
+
+
+                            <div class="form-group">
+                                <strong>Image:</strong>
+                                <input type="file" name="image" id="image" class="form-control" value="{{ $article->image }}">
+                                @error('image')
+                                <div class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                                @enderror
+                            </div>
+
                             <div>
                                 <button class="btn-lg btn-primary" type="submit">Submit</button>
                             </div>
