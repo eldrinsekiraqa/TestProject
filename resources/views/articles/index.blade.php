@@ -14,15 +14,38 @@
                         <div class="float-right">
                             <a href="{{route('articles.create')}}">Create Article</a>
                         </div>
-                    </div>
+
+                        <div class="mx-auto pull-right">
+                            <div class="">
+                                <form action="{{ route('articles.index') }}" method="GET" role="search">
+
+                                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+                                        <input type="text" class="form-control mr-2" name="term" placeholder="Search articles" id="al_desc">
+                                        <a href="{{ route('articles.index') }}" class=" mt-1">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" title="Refresh page">
+                                    <span class="fas fa-sync-alt"></span>
+                                </button>
+                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
 
                     <div class="card-body d-flex row">
                         @foreach($myarticles as $myarticle)
                         <div class="card ml-2 mt-1" style="width: 14rem;">
                             <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $myarticle->image }}" alt="Card image cap">
                             <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->al_desc}}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->tr_desc}}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">{{$myarticle->stock}}</h6>
                                 <div class="container d-flex justify-content-around">
                                     <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary">Edit</a>
                                     <form action="{{ route('articles.destroy',  $myarticle->id) }}" method="POST">

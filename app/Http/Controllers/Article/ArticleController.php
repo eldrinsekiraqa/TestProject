@@ -15,11 +15,14 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user=Auth::user();
+        $searchTerm = $request->input('term');
         $myarticles = Articles::where('user_id',$user->id)
+            ->where('al_desc',"LIKE","%" .$searchTerm."%")
             ->get();
+        
         return view('articles.index')->with('myarticles',$myarticles);
     }
 
@@ -156,6 +159,6 @@ class ArticleController extends Controller
             $article->stock = $articleStock-1;
             $article->save();
         }
-        return redirect()->back()->with('success','Sold Item');
+        return redirect()->back()->with('success','Item Sold');
     }
 }
