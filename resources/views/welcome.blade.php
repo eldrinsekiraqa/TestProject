@@ -29,7 +29,7 @@
 
     <div class="container">
         @if (Route::has('login'))
-            <div class="col-lg-12 d-flex justify-content-center mt-4">
+            <div class="col-lg-12 d-flex justify-content-center mt-4 h-100">
                 @auth
                     <a href="{{ route('home.index') }}" class="text-sm text-gray-700 underline">Home</a>
                 @else

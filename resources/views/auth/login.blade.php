@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <div class="container d-flex justify-content-center mb-3">
+                    <img src="https://i.ibb.co/94ZkZx3/urban-kids-logo.png" alt="" class="img-fluid">
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
