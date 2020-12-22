@@ -21,7 +21,6 @@ class ArticleController extends Controller
         $searchTerm = $request->input('term');
         $myarticles = Articles::where('user_id',$user->id)
             ->where('al_desc',"LIKE","%" .$searchTerm."%")
-            ->orWhere('tr_desc',"LIKE","%" .$searchTerm."%")
             ->get();
 
         return view('articles.index')->with('myarticles',$myarticles);

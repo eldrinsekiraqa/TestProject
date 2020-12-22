@@ -45,12 +45,16 @@
                             <img class="card-img-top" style="height: 150px" src="{{ URL::to('/') }}/images/{{ $myarticle->image }}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-subtitle mb-4 text-muted"><strong>Pershkrimi ALB:</strong>&nbsp;<br>{{$myarticle->al_desc}}</h5>
+                                <hr>
                                 <h5 class="card-subtitle mb-4 text-muted"><strong>Pershkrimi TR:</strong>&nbsp;<br>{{$myarticle->tr_desc}}</h5>
+                                <hr>
                                 <h5 class="card-subtitle mb-4 text-muted"><strong>Mosha:</strong>&nbsp;<br>{{$myarticle->age}}</h5>
+                                <hr>
                                 <h5 class="card-subtitle mb-4 text-muted"><strong>In Stock:</strong>&nbsp;{{$myarticle->stock}}pcs</h5>
+                                <hr>
                                 <div class="container d-flex justify-content-around">
-                                    <h5 style="color:red;">P.Price: {{ $myarticle->pur_price }}€</h5>
-                                    <h5 style="color: green;">S.Price: {{ $myarticle->sale_price }}€</h5>
+                                    <h4 style="color:red;">{{ $myarticle->pur_price }}€</h4>
+                                    <h4 style="color: green;">{{ $myarticle->sale_price }}€</h4>
                                 </div>
                                 <div class="container d-flex justify-content-between mt-3">
                                     <a href="{{ route('articles.edit', $myarticle -> id)}}" class="btn btn-primary far fa-edit"></a>
