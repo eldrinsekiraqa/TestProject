@@ -19,11 +19,22 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .myProducts{
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 1.1rem;
+        }
+        .myProducts:hover{
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-lighgreen shadow-sm">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('home.index') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -36,7 +47,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                         <li class="nav-item">
-                            <a href="{{route('articles.index')}}">My Products</a>
+                            <a href="{{route('articles.index')}}" class="myProducts">My Products</a>
                         </li>
                         @endauth
                     </ul>
@@ -80,7 +91,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="background: linear-gradient(#e66465, #9198e5);">
             @yield('content')
         </main>
     </div>
