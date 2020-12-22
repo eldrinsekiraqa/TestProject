@@ -6,8 +6,16 @@
 .env
 .env.backup
 .phpunit.result.cache
-docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
+.idea
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/hr_system.iml
+.idea/codeStyles/codeStyleConfig.xml
+# Ignore cache
+.cache/
