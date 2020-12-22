@@ -20,6 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('al_desc');
             $table->string('tr_desc');
             $table->integer('stock');
+            $table->integer('prime_stock');
             $table->double('pur_price');
             $table->double('sale_price');
             $table->timestamps();

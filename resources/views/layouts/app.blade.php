@@ -36,7 +36,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                         <li class="nav-item">
-                            <a href="{{route('articles.index')}}">MyArticles</a>
+                            <a href="{{route('articles.index')}}">My Products</a>
                         </li>
                         @endauth
                     </ul>

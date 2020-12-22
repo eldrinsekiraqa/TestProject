@@ -9,10 +9,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <h4>{{ __('Articles') }}</h4>
+                            <h4>{{ __('Products') }}</h4>
                         </div>
                         <div class="float-right">
-                            <a href="{{route('articles.create')}}">Create Article</a>
+                            <a href="{{route('articles.create')}}">Create Product</a>
                         </div>
 
                         <div class="mx-auto pull-right">

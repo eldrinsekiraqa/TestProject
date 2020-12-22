@@ -21,6 +21,7 @@ class ArticleController extends Controller
         $searchTerm = $request->input('term');
         $myarticles = Articles::where('user_id',$user->id)
             ->where('al_desc',"LIKE","%" .$searchTerm."%")
+            ->orWhere('tr_desc',"LIKE","%" .$searchTerm."%")
             ->get();
 
         return view('articles.index')->with('myarticles',$myarticles);
@@ -77,12 +78,14 @@ class ArticleController extends Controller
             $article->image = $request->file('image')->getClientOriginalName();
         }
 
+        $articleStock = $request->input('stock');
         $article->al_desc = $request->input('al_desc');
         $article->tr_desc = $request->input('tr_desc');
         $article->stock = $request->input('stock');
         $article->age=$request->input('age');
         $article->pur_price=$request->input('pur_price');
         $article->sale_price=$request->input('sale_price');
+        $article->prime_stock +=$articleStock;
         $article->save();
 
         return redirect()->route('articles.index')->with('success','Article Updated Successfully');
@@ -134,6 +137,7 @@ class ArticleController extends Controller
             'age'=>$request->input('age'),
             'pur_price'=>$request->input('pur_price'),
             'sale_price'=>$request->input('sale_price'),
+            'prime_stock'=>$request->input('stock'),
             'user_id' => $user->id,
             'image' =>  $iconName,
         ];
