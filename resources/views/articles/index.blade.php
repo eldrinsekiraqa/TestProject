@@ -70,11 +70,15 @@
                                     <form method="POST" action="{{route('articles.reduceStock',$myarticle->id)}}">
                                         @csrf
                                         @method('PUT')
-                                        <span class="input-group-btn">
+                                        @if($myarticle->stock == 0)
+                                            <h5 style="margin-top: 5px; color: red;">Out of Stock</h5>
+                                        @else
+                                            <span class="input-group-btn">
                                         <button class="btn btn-success">
                                             <span class="fas fa-minus-circle"></span>
                                          </button>
                                         </span>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
